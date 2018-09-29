@@ -4,6 +4,7 @@
         ;; themes
         spacemacs-theme
         zenburn-theme
+        color-theme-sanityinc-tomorrow
 
         ;; editing helpers
         undo-tree
@@ -44,7 +45,7 @@
 (progn
   ;; "customize"
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (load custom-file)
+  ;; (load custom-file)
 
   ;; startup stuff
   (menu-bar-mode -1)
@@ -274,6 +275,22 @@
     (interactive)
     (shell-command "open -aterminal ."))
   (global-set-key (kbd "s-T")   'sd/open-terminal-here))
+
+;; set theme
+(progn
+  (defun sd/use-theme (name)
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme name t t)
+    (enable-theme name))
+
+  ;; (sd/use-theme 'spacemacs-light)
+  ;; (sd/use-theme 'spacemacs-dark)
+  ;; (sd/use-theme 'zenburn)
+  (sd/use-theme 'sanityinc-tomorrow-eighties)
+  ;; (sd/use-theme 'sanityinc-tomorrow-night)
+  ;; (sd/use-theme 'monokai)
+  ;; (sd/use-theme 'naquadah)
+  )
 
 ;; start off in reasonable directory
 (dired (concat (getenv "HOME") "/projects"))
