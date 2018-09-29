@@ -41,6 +41,22 @@
   (package-refresh-contents)
   (mapc #'package-install sd/packages))
 
+;; set theme
+(progn
+  (defun sd/use-theme (name)
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme name t t)
+    (enable-theme name))
+
+  ;; (sd/use-theme 'spacemacs-light)
+  ;; (sd/use-theme 'spacemacs-dark)
+  ;; (sd/use-theme 'zenburn)
+  (sd/use-theme 'sanityinc-tomorrow-eighties)
+  ;; (sd/use-theme 'sanityinc-tomorrow-night)
+  ;; (sd/use-theme 'monokai)
+  ;; (sd/use-theme 'naquadah)
+  )
+
 ;; fundamental fixes to emacs's stupid defaults
 (progn
   ;; "customize"
@@ -275,22 +291,6 @@
     (interactive)
     (shell-command "open -aterminal ."))
   (global-set-key (kbd "s-T")   'sd/open-terminal-here))
-
-;; set theme
-(progn
-  (defun sd/use-theme (name)
-    (mapc #'disable-theme custom-enabled-themes)
-    (load-theme name t t)
-    (enable-theme name))
-
-  ;; (sd/use-theme 'spacemacs-light)
-  ;; (sd/use-theme 'spacemacs-dark)
-  ;; (sd/use-theme 'zenburn)
-  (sd/use-theme 'sanityinc-tomorrow-eighties)
-  ;; (sd/use-theme 'sanityinc-tomorrow-night)
-  ;; (sd/use-theme 'monokai)
-  ;; (sd/use-theme 'naquadah)
-  )
 
 ;; start off in reasonable directory
 (dired (concat (getenv "HOME") "/projects"))
