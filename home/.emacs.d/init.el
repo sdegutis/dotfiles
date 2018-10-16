@@ -122,6 +122,10 @@
   (defun sd/join-line () (interactive) (join-line 1))
   (global-set-key (kbd "M-k") #'sd/join-line)
 
+  ;; fix $PATH (here for dired *and* eshell)
+  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+
+  ;; editing
   (define-key prog-mode-map (kbd "RET") 'newline-and-indent))
 
 ;; buffer management
@@ -241,6 +245,8 @@
 (progn
   (require 'eshell)
 
+  (setenv "TERM" "xterm-256color")
+
   (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
 
   (setq eshell-banner-message "ready.\n")
@@ -261,8 +267,6 @@
       (eshell-emit-prompt)))
 
   (defun sd/setup-eshell ()
-    (setenv "TERM" "xterm-256color")
-    (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
     (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
     (setq exec-path (append '("/usr/local/bin") exec-path))
     (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
