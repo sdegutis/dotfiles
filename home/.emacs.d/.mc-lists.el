@@ -4,6 +4,9 @@
 (setq mc/cmds-to-run-for-all
       '(
         dabbrev-expand
+        electric-newline-and-maybe-indent
+        indent-new-comment-line
+        kill-region
         paredit-backward
         paredit-backward-down
         paredit-backward-kill-word
@@ -14,6 +17,9 @@
         paredit-forward-kill-word
         paredit-forward-up
         paredit-raise-sexp
+        paredit-splice-sexp
+        sd/join-line
+        sgml-slash
         ))
 
 (setq mc/cmds-to-run-once
