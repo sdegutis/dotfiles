@@ -49,9 +49,9 @@
     (enable-theme name))
 
   ;; (sd/use-theme 'spacemacs-light)
-  ;; (sd/use-theme 'spacemacs-dark)
+  (sd/use-theme 'spacemacs-dark)
   ;; (sd/use-theme 'zenburn)
-  (sd/use-theme 'sanityinc-tomorrow-eighties)
+  ;; (sd/use-theme 'sanityinc-tomorrow-eighties)
   ;; (sd/use-theme 'sanityinc-tomorrow-night)
   ;; (sd/use-theme 'monokai)
   ;; (sd/use-theme 'naquadah)
