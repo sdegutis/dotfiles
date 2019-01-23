@@ -14,8 +14,6 @@
 [color]
 	ui = true
 
-[merge]
-	tool = opendiff
 [core]
 	excludesfile = ~/.gitignoreglobal
 	quotepath = false
