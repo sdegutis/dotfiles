@@ -57,6 +57,25 @@
   ;; (sd/use-theme 'naquadah)
   )
 
+(defun sd/try-theme ()
+  (interactive)
+  (sd/use-theme
+   (intern
+    (completing-read
+     "Theme"
+     '(spacemacs-light
+       spacemacs-dark
+       zenburn
+       sanityinc-tomorrow-eighties
+       sanityinc-tomorrow-night
+       monokai
+       naquadah)))))
+
+(global-unset-key (kbd "s-k"))
+(global-set-key (kbd "s-k s-t") #'sd/try-theme)
+
+
+
 ;; fundamental fixes to emacs's stupid defaults
 (progn
   ;; "customize"
