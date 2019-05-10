@@ -124,6 +124,10 @@
   (add-to-list 'default-frame-alist '(alpha 95 85))
   (set-face-font 'default "Menlo-14.0")
 
+  ;; dark mode stuff?
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+
   ;; disable backup, auto-save, and lock files
   (setq-default backup-inhibited t)
   (setq-default auto-save-default nil)
