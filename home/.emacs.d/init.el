@@ -121,7 +121,7 @@
   (global-unset-key (kbd "s-p")) ;; stop asking to print
 
   ;; visual tweaks
-  (add-to-list 'default-frame-alist '(alpha 95 85))
+  (add-to-list 'default-frame-alist '(alpha 100 100))
   (set-face-font 'default "Menlo-14.0")
 
   ;; dark mode stuff?
