@@ -290,6 +290,7 @@
       (eshell-emit-prompt)))
 
   (defun sd/setup-eshell ()
+    (setenv "TERM" "xterm-256color")
     (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
     (setq exec-path (append '("/usr/local/bin") exec-path))
     (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
