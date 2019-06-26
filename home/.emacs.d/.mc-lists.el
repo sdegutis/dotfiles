@@ -5,6 +5,8 @@
       '(
         dabbrev-expand
         electric-newline-and-maybe-indent
+        forward-sexp
+        indent-for-tab-command
         indent-new-comment-line
         kill-region
         paredit-backward
@@ -24,5 +26,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+        counsel-M-x
         ivy-alt-done
         ))
