@@ -177,6 +177,9 @@
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
   (setq uniquify-strip-common-suffix t))
 
+;; javascript
+(setq js-indent-level 2)
+
 ;; paredit
 (autoload 'enable-paredit-mode "paredit" nil t)
 (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
