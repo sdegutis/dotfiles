@@ -3,14 +3,11 @@ set -e
 
 clean () {
   set -x
-  rm -f $HOME/Library/KeyBindings/DefaultKeyBinding.dict
   find $PWD/home -mindepth 1 -maxdepth 1 -execdir rm -f $HOME/{} \;
 }
 
 install () {
   set -x
-  mkdir -p $HOME/Library/KeyBindings/
-  cp DefaultKeyBinding.dict $HOME/Library/KeyBindings/
   find $PWD/home -mindepth 1 -maxdepth 1 -exec ln -s {} $HOME/. \;
 }
 
