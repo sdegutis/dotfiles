@@ -62,7 +62,7 @@
   (sd/use-theme
    (intern
     (completing-read
-     "Theme"
+     "Theme> "
      '(spacemacs-light
        spacemacs-dark
        zenburn
