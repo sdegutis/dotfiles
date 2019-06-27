@@ -112,10 +112,9 @@
   (pixel-scroll-mode 0) ;; somehow they managed to make a pixel scroll
                         ;; that's actually worse than not having it
 
-  ;; (setq scroll-conservatively 10000)
-  ;; (setq auto-window-vscroll nil)
-  ;; (setq scroll-margin 3) ;; these two lines can apparently sometimes
-  ;; (setq scroll-step 1)   ;; mess with eshell but I don't remember how
+  (setq scroll-conservatively 101)
+  (setq auto-window-vscroll nil)
+  (setq scroll-step 1)
 
   ;; useless shortcuts
   (global-unset-key (kbd "C-z")) ;; stop minimizing
