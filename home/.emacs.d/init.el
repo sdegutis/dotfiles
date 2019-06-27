@@ -219,6 +219,12 @@
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
 
 
+;; man page color
+(require 'man)
+(set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
+(set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t)
+
+
 ;; sane comment functionality
 (defun sd/comment-dwim ()
   (interactive)
