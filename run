@@ -1,14 +1,19 @@
 #!/bin/bash
 set -e
 
+NOT_GIT='-not -name .git'
+NOT_RUN='-not -name run'
+NOT_DOT='-mindepth 1'
+NOT_ALL='-maxdepth 1'
+
 clean () {
   set -x
-  find $PWD/home -mindepth 1 -maxdepth 1 -execdir rm -f $HOME/{} \;
+  find $PWD $NOT_DOT $NOT_ALL $NOT_GIT $NOT_RUN -execdir rm -f $HOME/{} \;
 }
 
 install () {
   set -x
-  find $PWD/home -mindepth 1 -maxdepth 1 -exec ln -s {} $HOME/. \;
+  find $PWD $NOT_DOT $NOT_ALL $NOT_GIT $NOT_RUN -exec ln -s {} $HOME/. \;
 }
 
 case $1 in
