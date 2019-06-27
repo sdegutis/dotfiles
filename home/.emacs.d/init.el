@@ -233,6 +233,8 @@
 (progn
   (require 'ivy)
 
+  (setq ivy-count-format "%d/%d ")
+
   ;; stop backspace closing minibuffer
   (setq ivy-on-del-error-function nil)
 
