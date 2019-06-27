@@ -235,8 +235,6 @@
 ;; vertical fuzzy-matching everywhere
 (progn
   (require 'ivy)
-  (require 'smex)
-  (require 'flx)
 
   ;; stop backspace closing minibuffer
   (setq ivy-on-del-error-function nil)
