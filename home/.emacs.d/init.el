@@ -5,6 +5,7 @@
         spacemacs-theme
         zenburn-theme
         color-theme-sanityinc-tomorrow
+        apropospriate-theme
 
         ;; editing helpers
         undo-tree
@@ -55,10 +56,18 @@
     (enable-theme name))
 
   ;; (sd/use-theme 'spacemacs-light)
-  (sd/use-theme 'spacemacs-dark)
+  ;; (sd/use-theme 'spacemacs-dark)
+  (sd/use-theme 'apropospriate-dark)
+  ;; (sd/use-theme 'solarized-dark)
+  ;; (sd/use-theme 'sanityinc-solarized-dark)
   ;; (sd/use-theme 'zenburn)
   ;; (sd/use-theme 'sanityinc-tomorrow-eighties)
   ;; (sd/use-theme 'sanityinc-tomorrow-night)
+  ;; (sd/use-theme 'ample-flat)
+  ;; (sd/use-theme 'ample)
+  ;; (sd/use-theme 'moe-dark)
+  ;; (sd/use-theme 'material)
+  ;; (sd/use-theme 'material-light)
   ;; (sd/use-theme 'monokai)
   ;; (sd/use-theme 'naquadah)
   )
