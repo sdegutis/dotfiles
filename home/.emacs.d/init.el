@@ -84,7 +84,7 @@
 
 
 
-;; fundamental fixes to emacs's stupid defaults
+;; fundamental fixes to emacs's unreasonable defaults
 (progn
   ;; "customize"
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
