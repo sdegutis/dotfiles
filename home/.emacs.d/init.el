@@ -218,6 +218,23 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
 
+
+;; sane comment functionality
+(defun sd/comment-dwim ()
+  (interactive)
+  (if (region-active-p)
+      (paredit-comment-dwim)
+    (save-excursion
+      (end-of-line)
+      (set-mark (line-beginning-position))
+      (paredit-comment-dwim))))
+(add-hook 'paredit-mode-hook
+          (lambda ()
+            (define-key paredit-mode-map (kbd "M-;") 'sd/comment-dwim)))
+
+
+;; general
+
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
