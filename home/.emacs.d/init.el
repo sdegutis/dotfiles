@@ -169,7 +169,7 @@
 ;; buffer management
 (progn
   (dimmer-mode 1)
-  (setq dimmer-fraction 0.5)
+  (setq dimmer-fraction 0.3)
   (add-hook 'buffer-list-update-hook 'dimmer-command-hook)
 
   ;; buffer/panel shortcuts
