@@ -110,7 +110,8 @@
   (setq ring-bell-function 'ignore)
   (setq blink-matching-paren t)
   (pixel-scroll-mode 0) ;; somehow they managed to make a pixel scroll
-  ;; that's actually worse than not having it
+                        ;; that's actually worse than not having it
+
   ;; (setq scroll-conservatively 10000)
   ;; (setq auto-window-vscroll nil)
   ;; (setq scroll-margin 3) ;; these two lines can apparently sometimes
