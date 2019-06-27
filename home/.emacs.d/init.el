@@ -103,7 +103,7 @@
   (delete-selection-mode 1)
   (setq-default cursor-type 'box)
   (fset 'yes-or-no-p 'y-or-n-p)
-  (blink-cursor-mode -1)
+  (blink-cursor-mode 1)
   (prefer-coding-system 'utf-8)
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
