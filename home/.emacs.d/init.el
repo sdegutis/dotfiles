@@ -29,7 +29,6 @@
         flx
         smex
         ivy
-        ido-vertical-mode
         company
         company-flx
 
@@ -256,18 +255,16 @@
   (global-set-key (kbd "<f2> u")  'counsel-unicode-char)
   (global-set-key (kbd "C-c g")   'counsel-git)
   (global-set-key (kbd "C-c j")   'counsel-git-grep)
-  (global-set-key (kbd "C-x C-b") 'ivy-switch-buffer)
+  (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
+
+  (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
 
   (setq ivy-extra-directories nil)
   (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
   (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
 
   (ivy-mode 1)
-
-  ;; ido for buffer management
-  (ido-mode 1)
-  (ido-vertical-mode 1)
 
   ;; auto-completion with fuzzy matching
   (add-hook 'after-init-hook 'global-company-mode)
