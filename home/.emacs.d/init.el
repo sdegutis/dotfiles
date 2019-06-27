@@ -12,11 +12,10 @@
         rainbow-delimiters
         paredit
 
-        dimmer
-
         ;; buffer management
         buffer-move
         windsize
+        dimmer
 
         ;; git
         magit
