@@ -11,6 +11,7 @@
         multiple-cursors
         rainbow-delimiters
         paredit
+        hl-todo
 
         ;; buffer management
         buffer-move
@@ -151,6 +152,9 @@
 
   ;; editing
   (define-key prog-mode-map (kbd "RET") 'newline-and-indent))
+
+;; general
+(global-hl-todo-mode)
 
 ;; buffer management
 (progn
