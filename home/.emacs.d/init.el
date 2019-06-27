@@ -12,6 +12,8 @@
         rainbow-delimiters
         paredit
 
+        dimmer
+
         ;; buffer management
         buffer-move
         windsize
@@ -153,6 +155,8 @@
 
 ;; buffer management
 (progn
+  (dimmer-mode 1)
+
   ;; buffer/panel shortcuts
   (global-set-key (kbd "s-[") 'previous-buffer)
   (global-set-key (kbd "s-]") 'next-buffer)
