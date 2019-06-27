@@ -211,12 +211,12 @@
 (add-to-list 'magit-no-confirm 'unstage-all-changes)
 (global-set-key (kbd "s-G") #'magit-status)
 
-;; region shortcuts
-(global-set-key (kbd "C-c w") #'count-words-region)
-(global-set-key (kbd "C-c u") #'upcase-region)
-(global-set-key (kbd "C-c d") #'downcase-region)
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
+;; ;; region shortcuts
+;; (global-set-key (kbd "C-c w") #'count-words-region)
+;; (global-set-key (kbd "C-c u") #'upcase-region)
+;; (global-set-key (kbd "C-c d") #'downcase-region)
+;; (put 'upcase-region 'disabled nil)
+;; (put 'downcase-region 'disabled nil)
 
 ;; edit multiple lines
 (require 'multiple-cursors)
