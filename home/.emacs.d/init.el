@@ -161,8 +161,9 @@
   (define-key prog-mode-map (kbd "RET") 'newline-and-indent))
 
 
-;; general
+;; unknown...(???)
 (global-hl-todo-mode)
+(setq sh-basic-offset 2)
 
 
 ;; markdown
