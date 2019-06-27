@@ -287,6 +287,9 @@
 
   (setq ivy-count-format "%d/%d ")
 
+  ;; don't add ^ to beginning of *any* searches
+  (setq ivy-initial-inputs-alist nil)
+
   ;; stop backspace closing minibuffer
   (setq ivy-on-del-error-function nil)
 
