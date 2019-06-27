@@ -217,6 +217,7 @@
 (require 'multiple-cursors)
 (global-set-key (kbd "C-<return>") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-s->") 'mc/mark-next-like-this-symbol)
 
 ;; mode line
 (setq-default
