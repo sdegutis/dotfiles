@@ -99,7 +99,7 @@
   (setq require-final-newline t)
   (setq-default indent-tabs-mode nil)
   (setq-default truncate-lines t)
-  (global-hl-line-mode 0)
+  (global-hl-line-mode 1)
   (delete-selection-mode 1)
   (setq-default cursor-type 'box)
   (fset 'yes-or-no-p 'y-or-n-p)
