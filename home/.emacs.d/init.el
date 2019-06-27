@@ -276,12 +276,10 @@
 (progn
   (require 'eshell)
 
-  (setenv "TERM" "xterm-256color")
-
-  (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
+  ;; (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
 
   (setq eshell-banner-message "ready.\n")
-  (setq eshell-output-filter-functions (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
+  ;; (setq eshell-output-filter-functions (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
   (setq eshell-prompt-function 'sd/eshell-prompt)
 
   (defun sd/open-new-eshell-at-project-root ()
@@ -299,11 +297,12 @@
 
   (defun sd/setup-eshell ()
     (setenv "TERM" "xterm-256color")
-    (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
-    (setq exec-path (append '("/usr/local/bin") exec-path))
-    (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
+    ;; (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
+    ;; (setq exec-path (append '("/usr/local/bin") exec-path))
+    ;; (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
     (define-key eshell-mode-map (kbd "s-k")   'sd/clear-eshell-buffer)
-    (define-key eshell-mode-map (kbd "M-r")   'counsel-esh-history))
+    ;; (define-key eshell-mode-map (kbd "M-r")   'counsel-esh-history)
+    )
 
   (defun sd/eshell-prompt ()
     (concat
@@ -312,9 +311,10 @@
       (eshell/pwd))
      (if (= (user-uid) 0) " # " " $ ")))
 
-  (add-hook 'eshell-mode-hook 'toggle-truncate-lines)
+  ;; (add-hook 'eshell-mode-hook 'toggle-truncate-lines)
   (add-hook 'eshell-mode-hook #'sd/setup-eshell)
-  (add-hook 'eshell-before-prompt-hook (lambda () (setq xterm-color-preserve-properties t))))
+  ;; (add-hook 'eshell-before-prompt-hook (lambda () (setq xterm-color-preserve-properties t)))
+  )
 
 ;; shortcuts for opening other apps
 (progn
