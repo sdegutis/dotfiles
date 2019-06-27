@@ -110,6 +110,7 @@
   (set-keyboard-coding-system 'utf-8)
   (setq ring-bell-function 'ignore)
   (setq blink-matching-paren t)
+  (show-paren-mode 1)
   (pixel-scroll-mode 0) ;; somehow they managed to make a pixel scroll
                         ;; that's actually worse than not having it
 
