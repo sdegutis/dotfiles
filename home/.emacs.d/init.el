@@ -18,8 +18,10 @@
         windsize
         dimmer
 
-        ;; programming
+        ;; markdown
         markdown-mode
+        polymode
+        poly-markdown
 
         ;; git
         magit
