@@ -256,6 +256,7 @@
   (global-set-key (kbd "C-c j")   'counsel-git-grep)
   (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "C-x C-p") 'counsel-package)
 
   (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
 
