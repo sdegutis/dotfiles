@@ -156,6 +156,8 @@
 ;; buffer management
 (progn
   (dimmer-mode 1)
+  (setq dimmer-fraction 0.5)
+  (add-hook 'buffer-list-update-hook 'dimmer-command-hook)
 
   ;; buffer/panel shortcuts
   (global-set-key (kbd "s-[") 'previous-buffer)
