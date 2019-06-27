@@ -64,16 +64,9 @@
    (intern
     (completing-read
      "Theme> "
-     '(spacemacs-light
-       spacemacs-dark
-       zenburn
-       sanityinc-tomorrow-eighties
-       sanityinc-tomorrow-night
-       monokai
-       naquadah)))))
+     (custom-available-themes)))))
 
-(global-unset-key (kbd "s-k"))
-(global-set-key (kbd "s-k s-t") #'sd/try-theme)
+(global-set-key (kbd "C-x t") #'sd/try-theme)
 
 
 
