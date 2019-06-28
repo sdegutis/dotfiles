@@ -68,8 +68,9 @@
   (setq-default auto-save-default nil)
   (setq create-lockfiles nil)
 
-  ;; fix $PATH (here for dired *and* eshell)
-  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+  ;; fix $PATH
+  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH"))) ;; for dired / eshell
+  (setq exec-path (append '("/usr/local/bin") exec-path)) ;; for js-comint
 
   ;; utf-8
   (prefer-coding-system 'utf-8)
@@ -162,6 +163,9 @@
    buffer-move
    windsize
    dimmer
+
+   ;; javascript
+   js-comint
 
    ;; markdown
    markdown-mode
@@ -398,6 +402,12 @@
 
 ;; javascript
 (setq js-indent-level 2)
+(add-hook 'js-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-x C-e") 'js-send-last-sexp)
+            (local-set-key (kbd "C-x C-r") 'js-send-region)
+            (local-set-key (kbd "C-c b") 'js-send-buffer)
+            (local-set-key (kbd "C-c C-b") 'js-send-buffer-and-go)))
 
 
 
