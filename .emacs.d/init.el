@@ -524,13 +524,13 @@ in the current window."
       ("p" "Install package" counsel-package)
       ("b" "Show bindings" counsel-descbinds)]
      ["Git"
-      ("g" "find file in git repo" counsel-git)
-      ("r" "git-grep" counsel-git-grep)
-      ("x" "open GitX here" sd/open-gitx-here)]
+      ("g" "Find file in git repo" counsel-git)
+      ("r" "Find string with git-grep" counsel-git-grep)
+      ("x" "Open GitX here" sd/open-gitx-here)]
      ["Emacs Lisp"
-      ("l" "find library" counsel-find-library)
-      ("f" "describe function" counsel-describe-function)
-      ("v" "describe variable" counsel-describe-variable)]
+      ("l" "Find library" counsel-find-library)
+      ("f" "Describe function" counsel-describe-function)
+      ("v" "Describe variable" counsel-describe-variable)]
      ["Misc"
       ("t" "Open Terminal.app here" sd/open-terminal-here)
       ("e" "Open eshell at project root" sd/open-new-eshell-at-project-root)]])
