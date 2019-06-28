@@ -316,6 +316,7 @@
   (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
   (global-set-key (kbd "C-x p")   'counsel-package)
   (global-set-key (kbd "C-x t")   'counsel-load-theme)
+  (global-set-key (kbd "C-x k")   'counsel-descbinds)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
   ;; easy way to clean up old buffers
