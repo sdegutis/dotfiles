@@ -408,10 +408,10 @@
 (setq js-indent-level 2)
 (add-hook 'js-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-x C-e") 'js-send-last-sexp)
-            (local-set-key (kbd "C-x C-r") 'js-send-region)
-            (local-set-key (kbd "C-c b") 'js-send-buffer)
-            (local-set-key (kbd "C-c C-b") 'js-send-buffer-and-go)))
+            (local-set-key (kbd "C-x C-e") 'js-comint-send-last-sexp)
+            (local-set-key (kbd "C-x C-r") 'js-comint-send-region)
+            ;; (local-set-key (kbd "C-c b") 'js-comint-send-buffer)
+            ))
 
 
 
