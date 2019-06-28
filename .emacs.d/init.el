@@ -305,8 +305,7 @@
 
   ;; ivy/swiper fuzzy matching
   (setq ivy-re-builders-alist
-        '((swiper . regexp-quote)
-          (t      . ivy--regex-fuzzy)))
+        '((t . ivy--regex-fuzzy)))
 
   (global-set-key (kbd "M-x")     'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
