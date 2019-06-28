@@ -80,6 +80,7 @@
 
 
 
+
 ;; bare-bones package management
 (progn
   (require 'package)
@@ -133,6 +134,7 @@
 
 
 
+
 ;; theme stuff
 (progn
   (defun sd/use-theme (name)
@@ -158,6 +160,7 @@
        "Theme> "
        (custom-available-themes)))))
   (global-set-key (kbd "C-x t") #'sd/try-theme))
+
 
 
 
@@ -200,11 +203,13 @@
 
 
 
+
 ;; futuristic undo
 (require 'undo-tree)
 (global-undo-tree-mode)
 (global-set-key (kbd "s-z") #'undo-tree-undo)
 (global-set-key (kbd "s-Z") #'undo-tree-redo)
+
 
 
 
@@ -217,11 +222,13 @@
 
 
 
+
 ;; edit multiple lines
 (require 'multiple-cursors)
 (global-set-key (kbd "C-<return>") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-s->") 'mc/mark-next-like-this-symbol)
+
 
 
 
@@ -235,9 +242,11 @@
 
 
 
+
 ;; rainbow-delimiters everywhere
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
 
 
 
