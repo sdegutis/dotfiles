@@ -263,6 +263,7 @@
 (progn
   (require 'ivy)
 
+  ;; show current position in list too
   (setq ivy-count-format "%d/%d ")
 
   ;; don't add ^ to beginning of *any* searches
@@ -271,9 +272,9 @@
   ;; stop backspace closing minibuffer
   (setq ivy-on-del-error-function nil)
 
-  ;; ivy fuzzy matching
+  ;; ivy/swiper fuzzy matching
   (setq ivy-re-builders-alist
-        '(;; (swiper . regexp-quote)
+        '((swiper . regexp-quote)
           (t      . ivy--regex-fuzzy)))
 
   (global-set-key (kbd "M-x")     'counsel-M-x)
@@ -281,20 +282,20 @@
   (global-set-key (kbd "s-f")     'swiper)
   (global-set-key (kbd "<f1> f")  'counsel-describe-function)
   (global-set-key (kbd "<f1> v")  'counsel-describe-variable)
-  ;;   (global-set-key (kbd "<f1> l")  'counsel-find-library)
-  ;;   (global-set-key (kbd "<f2> i")  'counsel-info-lookup-symbol)
-  ;;   (global-set-key (kbd "<f2> u")  'counsel-unicode-char)
   (global-set-key (kbd "C-c g")   'counsel-git)
   (global-set-key (kbd "C-c j")   'counsel-git-grep)
   (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
   (global-set-key (kbd "C-x p")   'counsel-package)
 
+  ;; easy way to clean up old buffers
   (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
 
+  ;; make ivy more like ido for files/dirs
   (setq ivy-extra-directories nil)
   (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
   (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
 
+  ;; make ivy work everywhere (like sd/try-theme)
   (ivy-mode 1)
 
   ;; auto-completion with fuzzy matching
