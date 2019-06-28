@@ -200,6 +200,98 @@
 
 
 
+;; futuristic undo
+(require 'undo-tree)
+(global-undo-tree-mode)
+(global-set-key (kbd "s-z") #'undo-tree-undo)
+(global-set-key (kbd "s-Z") #'undo-tree-redo)
+
+
+
+;; futuristic git ui
+(require 'magit)
+(setq vc-follow-symlinks t)
+(add-to-list 'magit-no-confirm 'stage-all-changes)
+(add-to-list 'magit-no-confirm 'unstage-all-changes)
+(global-set-key (kbd "s-G") #'magit-status)
+
+
+
+;; edit multiple lines
+(require 'multiple-cursors)
+(global-set-key (kbd "C-<return>") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-s->") 'mc/mark-next-like-this-symbol)
+
+
+
+;; mode line
+(setq-default
+ mode-line-format
+ '("%e" (:eval (list " %* " mode-line-buffer-identification
+                     "  %3l  " (abbreviate-file-name default-directory)
+                     " " mode-line-modes
+                     " " mode-line-misc-info))))
+
+
+
+;; rainbow-delimiters everywhere
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+
+
+;; dired
+(require 'dired-x)
+(setq-default dired-auto-revert-buffer t)
+(setq-default dired-use-ls-dired nil)
+(setq dired-listing-switches "-alh")
+
+
+
+
+;; fuzzy-matching everywhere
+(progn
+  (require 'ivy)
+
+  (setq ivy-count-format "%d/%d ")
+
+  ;; don't add ^ to beginning of *any* searches
+  (setq ivy-initial-inputs-alist nil)
+
+  ;; stop backspace closing minibuffer
+  (setq ivy-on-del-error-function nil)
+
+  ;; ivy fuzzy matching
+  (setq ivy-re-builders-alist
+        '(;; (swiper . regexp-quote)
+          (t      . ivy--regex-fuzzy)))
+
+  (global-set-key (kbd "M-x")     'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "s-f")     'swiper)
+  (global-set-key (kbd "<f1> f")  'counsel-describe-function)
+  (global-set-key (kbd "<f1> v")  'counsel-describe-variable)
+;;   (global-set-key (kbd "<f1> l")  'counsel-find-library)
+;;   (global-set-key (kbd "<f2> i")  'counsel-info-lookup-symbol)
+;;   (global-set-key (kbd "<f2> u")  'counsel-unicode-char)
+  (global-set-key (kbd "C-c g")   'counsel-git)
+  (global-set-key (kbd "C-c j")   'counsel-git-grep)
+  (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
+  (global-set-key (kbd "C-x p")   'counsel-package)
+
+  (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
+
+  (setq ivy-extra-directories nil)
+  (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
+  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
+
+  (ivy-mode 1)
+
+  ;; auto-completion with fuzzy matching
+  (add-hook 'after-init-hook 'global-company-mode)
+  (with-eval-after-load 'company
+    (company-flx-mode +1)))
 
 ;; unknown...(???)
 (global-hl-todo-mode)
@@ -252,83 +344,7 @@
             (define-key paredit-mode-map (kbd "M-;") 'sd/comment-dwim)))
 
 
-;; general
 
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
-(require 'undo-tree)
-(global-undo-tree-mode)
-(global-set-key (kbd "s-z") #'undo-tree-undo)
-(global-set-key (kbd "s-Z") #'undo-tree-redo)
-
-(require 'dired-x)
-(setq-default dired-auto-revert-buffer t)
-(setq-default dired-use-ls-dired nil)
-(setq dired-listing-switches "-alh")
-
-(require 'magit)
-(setq vc-follow-symlinks t)
-(add-to-list 'magit-no-confirm 'stage-all-changes)
-(add-to-list 'magit-no-confirm 'unstage-all-changes)
-(global-set-key (kbd "s-G") #'magit-status)
-
-;; edit multiple lines
-(require 'multiple-cursors)
-(global-set-key (kbd "C-<return>") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-all-like-this-dwim)
-(global-set-key (kbd "C-s->") 'mc/mark-next-like-this-symbol)
-
-;; mode line
-(setq-default
- mode-line-format
- '("%e" (:eval (list " %* " mode-line-buffer-identification
-                     "  %3l  " (abbreviate-file-name default-directory)
-                     " " mode-line-modes
-                     " " mode-line-misc-info))))
-
-;; vertical fuzzy-matching everywhere
-(progn
-  (require 'ivy)
-
-  (setq ivy-count-format "%d/%d ")
-
-  ;; don't add ^ to beginning of *any* searches
-  (setq ivy-initial-inputs-alist nil)
-
-  ;; stop backspace closing minibuffer
-  (setq ivy-on-del-error-function nil)
-
-  ;; ivy fuzzy matching
-  (setq ivy-re-builders-alist
-        '(;; (swiper . regexp-quote)
-          (t      . ivy--regex-fuzzy)))
-
-  (global-set-key (kbd "M-x")     'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "s-f")     'swiper)
-  (global-set-key (kbd "<f1> f")  'counsel-describe-function)
-  (global-set-key (kbd "<f1> v")  'counsel-describe-variable)
-;;   (global-set-key (kbd "<f1> l")  'counsel-find-library)
-;;   (global-set-key (kbd "<f2> i")  'counsel-info-lookup-symbol)
-;;   (global-set-key (kbd "<f2> u")  'counsel-unicode-char)
-  (global-set-key (kbd "C-c g")   'counsel-git)
-  (global-set-key (kbd "C-c j")   'counsel-git-grep)
-  (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
-  (global-set-key (kbd "C-x p")   'counsel-package)
-
-  (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
-
-  (setq ivy-extra-directories nil)
-  (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
-  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
-
-  (ivy-mode 1)
-
-  ;; auto-completion with fuzzy matching
-  (add-hook 'after-init-hook 'global-company-mode)
-  (with-eval-after-load 'company
-    (company-flx-mode +1)))
 
 ;; eshell
 (progn
