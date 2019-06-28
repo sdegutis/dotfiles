@@ -356,6 +356,22 @@ in the current window."
 
 
 
+;; transient experiments
+(progn
+  (require 'transient)
+  (define-transient-command sd/core-commands ()
+    "Core Emacs commands"
+    ["Core"
+     ("t" "try theme" counsel-load-theme)
+     ("p" "install package" counsel-package)]
+    ["Finding"
+     ("f" "git find-file" counsel-git)
+     ("g" "git grep" counsel-git-grep)])
+  (global-set-key (kbd "s-J") 'sd/core-commands))
+
+
+
+
 ;; paredit
 (progn
   (autoload 'enable-paredit-mode "paredit" nil t)
