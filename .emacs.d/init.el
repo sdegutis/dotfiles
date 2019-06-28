@@ -34,7 +34,7 @@
   (delete-selection-mode 1)
   (setq-default indent-tabs-mode nil)
   (define-key prog-mode-map (kbd "RET") 'newline-and-indent)
-  (show-paren-mode 1)
+  (show-paren-mode -1)
   (setq-default truncate-lines t)
   (global-hl-line-mode 1)
 
