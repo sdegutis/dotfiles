@@ -438,14 +438,40 @@ in the current window."
 
 
 ;; javascript
-(setq js-indent-level 2)
-(add-hook 'js-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c C-e") 'js-comint-start-or-switch-to-repl)
-            (local-set-key (kbd "C-x C-e") 'js-comint-send-last-sexp)
-            (local-set-key (kbd "C-x C-r") 'js-comint-send-region)
-            ;; (local-set-key (kbd "C-c b") 'js-comint-send-buffer)
-            ))
+(progn
+  (setq js-indent-level 2)
+  (setq typescript-indent-level 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+
+  (add-hook 'js-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c C-e") 'js-comint-start-or-switch-to-repl)
+              (local-set-key (kbd "C-x C-e") 'js-comint-send-last-sexp)
+              (local-set-key (kbd "C-x C-r") 'js-comint-send-region)
+              (local-set-key (kbd "C-c C-b") 'js-comint-send-buffer)))
+
+  (defun sd/setup-tide-mode ()
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    (company-mode +1)
+    (add-hook 'before-save-hook 'tide-format-before-save)
+    (setq company-tooltip-align-annotations t))
+
+  (require 'web-mode)
+  (add-to-list 'auto-mode-alist '("\\.\\(t\\|j\\)sx?\\'" . web-mode))
+
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-match "\\(t\\|j\\)sx?" (file-name-extension buffer-file-name))
+                (sd/setup-tide-mode))))
+
+  (require 'flycheck)
+  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 
 
