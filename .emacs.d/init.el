@@ -111,7 +111,6 @@
     (insert
      (symbol-name
       (car custom-enabled-themes))))
-  (global-set-key (kbd "C-c C-t") 'sd/paste-current-theme)
 
   (defun sd/maybe-load-theme (theme)
     (when (member theme (custom-available-themes))
@@ -311,15 +310,8 @@
   (global-set-key (kbd "M-x")     'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
   (global-set-key (kbd "s-f")     'swiper)
-  (global-set-key (kbd "<f1> f")  'counsel-describe-function)
-  (global-set-key (kbd "<f1> v")  'counsel-describe-variable)
-  (global-set-key (kbd "C-c g")   'counsel-git)
-  (global-set-key (kbd "C-c j")   'counsel-git-grep)
   (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
   (global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
-  (global-set-key (kbd "C-x p")   'counsel-package)
-  (global-set-key (kbd "C-x t")   'counsel-load-theme)
-  (global-set-key (kbd "C-x C-k") 'counsel-descbinds)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
   (defun counsel-switch-buffer ()
@@ -354,22 +346,6 @@ in the current window."
   (add-hook 'after-init-hook 'global-company-mode)
   (with-eval-after-load 'company
     (company-flx-mode +1)))
-
-
-
-
-;; transient experiments
-(progn
-  (require 'transient)
-  (define-transient-command sd/core-commands ()
-    "Core Emacs commands"
-    ["Core"
-     ("t" "try theme" counsel-load-theme)
-     ("p" "install package" counsel-package)]
-    ["Finding"
-     ("f" "git find-file" counsel-git)
-     ("g" "git grep" counsel-git-grep)])
-  (global-set-key (kbd "s-J") 'sd/core-commands))
 
 
 
@@ -534,6 +510,31 @@ in the current window."
     (interactive)
     (shell-command "open -aterminal ."))
   (global-set-key (kbd "s-T")   'sd/open-terminal-here))
+
+
+
+
+;; experimental "command center"
+(progn
+  (require 'transient)
+  (define-transient-command sd/core-commands ()
+    "Emacs Commands"
+    [["Core"
+      ("t" "Use theme" counsel-load-theme)
+      ("p" "Install package" counsel-package)
+      ("b" "Show bindings" counsel-descbinds)]
+     ["Git"
+      ("g" "find file in git repo" counsel-git)
+      ("r" "git-grep" counsel-git-grep)
+      ("x" "open GitX here" sd/open-gitx-here)]
+     ["Emacs Lisp"
+      ("l" "find library" counsel-find-library)
+      ("f" "describe function" counsel-describe-function)
+      ("v" "describe variable" counsel-describe-variable)]
+     ["Misc"
+      ("t" "Open Terminal.app here" sd/open-terminal-here)
+      ("e" "Open eshell at project root" sd/open-new-eshell-at-project-root)]])
+  (global-set-key (kbd "s-J") 'sd/core-commands))
 
 
 
