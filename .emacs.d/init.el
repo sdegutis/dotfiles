@@ -509,7 +509,11 @@ in the current window."
   (defun sd/open-terminal-here ()
     (interactive)
     (shell-command "open -aterminal ."))
-  (global-set-key (kbd "s-T")   'sd/open-terminal-here))
+  (global-set-key (kbd "s-T")   'sd/open-terminal-here)
+
+  (defun sd/edit-emacs-init ()
+    (interactive)
+    (find-file user-init-file)))
 
 
 
@@ -522,7 +526,8 @@ in the current window."
     [["Core"
       ("t" "Use theme" counsel-load-theme)
       ("p" "Install package" counsel-package)
-      ("b" "Show bindings" counsel-descbinds)]
+      ("b" "Show bindings" counsel-descbinds)
+      ("i" "Edit init.el" sd/edit-emacs-init)]
      ["Git"
       ("g" "Find file in git repo" counsel-git)
       ("r" "Find string with git-grep" counsel-git-grep)
