@@ -231,7 +231,10 @@
 ;; sane comment functionality
 (defun sd/comment-dwim ()
   (interactive)
-  (if (region-active-p)
+  (if (or (region-active-p)
+          (string-blank-p
+           (buffer-substring (line-beginning-position)
+                             (line-end-position))))
       (paredit-comment-dwim)
     (save-excursion
       (end-of-line)
