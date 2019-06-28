@@ -9,16 +9,19 @@
         indent-for-tab-command
         indent-new-comment-line
         kill-region
+        mark-sexp
         paredit-backward
         paredit-backward-down
         paredit-backward-kill-word
         paredit-backward-up
+        paredit-doublequote
         paredit-forward
         paredit-forward-delete
         paredit-forward-down
         paredit-forward-kill-word
         paredit-forward-slurp-sexp
         paredit-forward-up
+        paredit-meta-doublequote
         paredit-open-round
         paredit-raise-sexp
         paredit-splice-sexp
