@@ -161,6 +161,43 @@
 
 
 
+;; buffer management
+(progn
+  ;; dim inactive windows
+  (dimmer-mode 1)
+  (setq dimmer-fraction 0.3)
+  (add-hook 'buffer-list-update-hook 'dimmer-command-hook)
+
+  ;; switch buffers with cmd-[  cmd-]
+  (global-set-key (kbd "s-[") 'previous-buffer)
+  (global-set-key (kbd "s-]") 'next-buffer)
+
+  ;; switch windows with cmd-shift-[  cmd-shift-]
+  (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
+  (global-set-key (kbd "s-}") 'other-window)
+
+  ;; swap buffers with ctrl-cmd-{arrows}
+  (global-set-key (kbd "<C-s-up>")     'buf-move-up)
+  (global-set-key (kbd "<C-s-down>")   'buf-move-down)
+  (global-set-key (kbd "<C-s-left>")   'buf-move-left)
+  (global-set-key (kbd "<C-s-right>")  'buf-move-right)
+
+  ;; resize buffers via ctrl-shift-{arrows}
+  (require 'windsize)
+  (windsize-default-keybindings)
+
+  ;; new blank buffers in current window with cmd-shift-n
+  (defun sd/new-blank-bufer ()
+    (interactive)
+    (switch-to-buffer (generate-new-buffer-name "untitled"))
+    (text-mode))
+  (global-set-key (kbd "s-N") 'sd/new-blank-bufer)
+
+  ;; unique buffer names
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  (setq uniquify-strip-common-suffix t))
+
 
 
 
@@ -180,36 +217,6 @@
     "Major mode for editing GitHub Flavored Markdown files" t)
   (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
 
-
-;; buffer management
-(progn
-  (dimmer-mode 1)
-  (setq dimmer-fraction 0.3)
-  (add-hook 'buffer-list-update-hook 'dimmer-command-hook)
-
-  ;; buffer/panel shortcuts
-  (global-set-key (kbd "s-[") 'previous-buffer)
-  (global-set-key (kbd "s-]") 'next-buffer)
-  (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
-  (global-set-key (kbd "s-}") 'other-window)
-  (global-set-key (kbd "<C-s-up>")     'buf-move-up)
-  (global-set-key (kbd "<C-s-down>")   'buf-move-down)
-  (global-set-key (kbd "<C-s-left>")   'buf-move-left)
-  (global-set-key (kbd "<C-s-right>")  'buf-move-right)
-  (require 'windsize)
-  (windsize-default-keybindings)
-
-  ;; new blank buffers easily
-  (defun sd/new-blank-bufer ()
-    (interactive)
-    (switch-to-buffer (generate-new-buffer-name "untitled"))
-    (text-mode))
-  (global-set-key (kbd "s-N") 'sd/new-blank-bufer)
-
-  ;; unique buffer names
-  (require 'uniquify)
-  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-  (setq uniquify-strip-common-suffix t))
 
 ;; javascript
 (setq js-indent-level 2)
