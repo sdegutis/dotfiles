@@ -5,20 +5,34 @@ NOT_GIT='-not -name .git'
 NOT_RUN='-not -name run'
 NOT_DOT='-mindepth 1'
 NOT_ALL='-maxdepth 1'
+NOT_README='-not -name README.md'
+RELEVANT="$NOT_DOT $NOT_ALL $NOT_GIT $NOT_RUN $NOT_README"
 
-clean () {
-  set -x
-  find $PWD $NOT_DOT $NOT_ALL $NOT_GIT $NOT_RUN -execdir rm -f $HOME/{} \;
-}
-
-install () {
-  set -x
-  find $PWD $NOT_DOT $NOT_ALL $NOT_GIT $NOT_RUN -exec ln -s {} $HOME/. \;
+show () {
+  echo $1
+  find $PWD $RELEVANT -execdir echo '  ' $HOME/{} \;
+  echo
 }
 
 case $1 in
-  reinstall) clean; install ;;
-  install)   install ;;
-  clean)     clean ;;
-  *)         echo "usage: $0 [ clean | install | reinstall ]" ;;
+  install)
+    show "Installing:"
+    set -x
+    find $PWD $RELEVANT -exec ln -s {} $HOME/. \;
+    ;;
+  clean)
+    if [ "$2" != "-f" ]
+    then
+      show "Would remove:"
+      echo "If you're sure about thisk run again with -f"
+      exit 1
+    else
+      show "Removing:"
+      set -x
+      find $PWD $RELEVANT -execdir rm -f $HOME/{} \;
+    fi
+    ;;
+  *)
+    echo "usage: $0 [ clean | install ]"
+    ;;
 esac
