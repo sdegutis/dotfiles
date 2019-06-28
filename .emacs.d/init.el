@@ -378,7 +378,6 @@
   (require 'eshell)
 
   (setq eshell-banner-message "ready.\n")
-  (setq eshell-prompt-function 'sd/eshell-prompt)
 
   (defun sd/open-new-eshell-at-project-root ()
     (interactive)
@@ -396,11 +395,10 @@
   (defun sd/setup-eshell ()
     (setenv "TERM" "xterm-256color")
     (setq-local truncate-lines nil)
-    ;; (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
-    ;; (setq exec-path (append '("/usr/local/bin") exec-path))
     ;; (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
     (define-key eshell-mode-map (kbd "s-k")   'sd/clear-eshell-buffer)
     (define-key eshell-mode-map (kbd "M-r")   'counsel-esh-history))
+  (add-hook 'eshell-mode-hook #'sd/setup-eshell)
 
   (defun sd/eshell-prompt ()
     (concat
@@ -408,9 +406,7 @@
      (abbreviate-file-name
       (eshell/pwd))
      (if (= (user-uid) 0) " # " " $ ")))
-
-  ;; (add-hook 'eshell-mode-hook 'toggle-truncate-lines)
-  (add-hook 'eshell-mode-hook #'sd/setup-eshell))
+  (setq eshell-prompt-function 'sd/eshell-prompt))
 
 
 
