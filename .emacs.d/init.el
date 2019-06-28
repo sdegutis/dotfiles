@@ -347,8 +347,7 @@
     ;; (setq exec-path (append '("/usr/local/bin") exec-path))
     ;; (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
     (define-key eshell-mode-map (kbd "s-k")   'sd/clear-eshell-buffer)
-    ;; (define-key eshell-mode-map (kbd "M-r")   'counsel-esh-history)
-    )
+    (define-key eshell-mode-map (kbd "M-r")   'counsel-esh-history))
 
   (defun sd/eshell-prompt ()
     (concat
