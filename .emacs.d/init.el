@@ -167,6 +167,7 @@
 
    ;; javascript
    js-comint
+   ;; ts-comint
 
    ;; markdown
    markdown-mode
@@ -451,6 +452,14 @@ in the current window."
               (local-set-key (kbd "C-x C-e") 'js-comint-send-last-sexp)
               (local-set-key (kbd "C-x C-r") 'js-comint-send-region)
               (local-set-key (kbd "C-c C-b") 'js-comint-send-buffer)))
+
+  ;; (add-hook 'web-mode-hook
+  ;;           (lambda ()
+  ;;             (when (string-match "\\(t\\|j\\)sx?" (file-name-extension buffer-file-name))
+  ;;               (local-set-key (kbd "C-c C-e") 'ts-comint-start-or-switch-to-repl)
+  ;;               (local-set-key (kbd "C-x C-e") 'ts-comint-send-last-sexp)
+  ;;               (local-set-key (kbd "C-x C-r") 'ts-comint-send-region)
+  ;;               (local-set-key (kbd "C-c C-b") 'ts-comint-send-buffer))))
 
   (defun sd/setup-tide-mode ()
     (tide-setup)
