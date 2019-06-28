@@ -291,7 +291,7 @@
   (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
 
   ;; make ivy more like ido for files/dirs
-  (setq ivy-extra-directories nil)
+  (setq ivy-extra-directories nil) ;; no . or ..
   (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
   (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
 
