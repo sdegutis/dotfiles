@@ -245,7 +245,8 @@
 (add-to-list 'magit-no-confirm 'stage-all-changes)
 (add-to-list 'magit-no-confirm 'unstage-all-changes)
 (global-set-key (kbd "s-G") #'magit-status)
-
+(setq magit-section-initial-visibility-alist '((stashes . show)
+                                               (unpushed . show)))
 
 
 
