@@ -257,7 +257,9 @@
 (setq-default
  mode-line-format
  '("%e" (:eval (list " %* " mode-line-buffer-identification
-                     "  %3l  " (abbreviate-file-name default-directory)
+                     " (%o) "
+                     " %4l : %2c   "
+                     " " (abbreviate-file-name default-directory)
                      " " mode-line-modes
                      " " mode-line-misc-info))))
 
