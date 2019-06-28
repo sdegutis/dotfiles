@@ -1,6 +1,8 @@
 ;; better defaults
 (progn
 
+  (defvar sd/theme 'apropospriate-dark)
+
   ;; startup stuff
   (menu-bar-mode -1)
   (tool-bar-mode -1)
@@ -81,11 +83,47 @@
 
 
 
+;; bare-bones theme management
+(progn
+  ;; favorite themes listed here in rough priority of preference
+  ;; try them out with C-x C-e while cursor's at end of line
+
+  ;; (counsel-load-theme-action "apropospriate-dark")
+  ;; (counsel-load-theme-action "atom-one-dark")
+  ;; (counsel-load-theme-action "solarized-dark")
+  ;; (counsel-load-theme-action "zenburn")
+  ;; (counsel-load-theme-action "spacemacs-dark")
+  ;; (counsel-load-theme-action "sanityinc-tomorrow-eighties")
+  ;; (counsel-load-theme-action "sanityinc-tomorrow-night")
+  ;; (counsel-load-theme-action "monokai")
+  ;; (counsel-load-theme-action "monokai-pro")
+  ;; (counsel-load-theme-action "monokai-alt")
+  ;; (counsel-load-theme-action "naquadah")
+
+  (defun sd/paste-current-theme ()
+    (interactive)
+    (insert
+     (symbol-name
+      (car custom-enabled-themes))))
+  (global-set-key (kbd "C-c C-t") 'sd/paste-current-theme)
+
+  (defun sd/maybe-load-theme (theme)
+    (when (member theme (custom-available-themes))
+      (load-theme theme t t)
+      (enable-theme theme))))
+
+
+
+
 ;; bare-bones package management
 (progn
   (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
   (package-initialize)
+
+  ;; load theme as early as possible in typical case
+  (sd/maybe-load-theme sd/theme)
+
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
   (package-refresh-contents)
 
   (defmacro sd/ensure-packages (&rest pkgs)
@@ -96,10 +134,18 @@
   (sd/ensure-packages
 
    ;; themes
-   spacemacs-theme
-   zenburn-theme
-   color-theme-sanityinc-tomorrow
    apropospriate-theme
+   zenburn-theme
+   spacemacs-theme
+   color-theme-sanityinc-tomorrow
+   atom-one-dark-theme
+   one-themes
+   solarized-theme
+   color-theme-sanityinc-solarized
+   monokai-theme
+   monokai-pro-theme
+   monokai-alt-theme
+   naquadah-theme
 
    ;; editing helpers
    undo-tree
@@ -127,36 +173,10 @@
    smex
    ivy
    company
-   company-flx))
+   company-flx)
 
-
-
-
-;; theme stuff
-(progn
-  (defun sd/use-theme (name)
-    (mapc #'disable-theme custom-enabled-themes)
-    (load-theme name t t)
-    (enable-theme name))
-
-  ;; (sd/use-theme 'spacemacs-dark)
-  (sd/use-theme 'apropospriate-dark)
-  ;; (sd/use-theme 'solarized-dark)
-  ;; (sd/use-theme 'sanityinc-solarized-dark)
-  ;; (sd/use-theme 'zenburn)
-  ;; (sd/use-theme 'sanityinc-tomorrow-eighties)
-  ;; (sd/use-theme 'sanityinc-tomorrow-night)
-  ;; (sd/use-theme 'monokai)
-  ;; (sd/use-theme 'naquadah)
-
-  (defun sd/try-theme ()
-    (interactive)
-    (sd/use-theme
-     (intern
-      (completing-read
-       "Theme> "
-       (custom-available-themes)))))
-  (global-set-key (kbd "C-x t") #'sd/try-theme))
+  ;; definitely should be loaded by now
+  (sd/maybe-load-theme sd/theme))
 
 
 
@@ -283,6 +303,8 @@
   (global-set-key (kbd "C-c j")   'counsel-git-grep)
   (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
   (global-set-key (kbd "C-x p")   'counsel-package)
+  (global-set-key (kbd "C-x t")   'counsel-load-theme)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
   ;; easy way to clean up old buffers
   (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
@@ -292,7 +314,7 @@
   (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
   (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
 
-  ;; make ivy work everywhere (like sd/try-theme)
+  ;; make ivy work /everywhere/
   (ivy-mode 1)
 
   ;; auto-completion with fuzzy matching
