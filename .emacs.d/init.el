@@ -281,9 +281,9 @@
   (global-set-key (kbd "s-f")     'swiper)
   (global-set-key (kbd "<f1> f")  'counsel-describe-function)
   (global-set-key (kbd "<f1> v")  'counsel-describe-variable)
-;;   (global-set-key (kbd "<f1> l")  'counsel-find-library)
-;;   (global-set-key (kbd "<f2> i")  'counsel-info-lookup-symbol)
-;;   (global-set-key (kbd "<f2> u")  'counsel-unicode-char)
+  ;;   (global-set-key (kbd "<f1> l")  'counsel-find-library)
+  ;;   (global-set-key (kbd "<f2> i")  'counsel-info-lookup-symbol)
+  ;;   (global-set-key (kbd "<f2> u")  'counsel-unicode-char)
   (global-set-key (kbd "C-c g")   'counsel-git)
   (global-set-key (kbd "C-c j")   'counsel-git-grep)
   (global-set-key (kbd "C-x b")   'ivy-switch-buffer)
@@ -302,41 +302,22 @@
   (with-eval-after-load 'company
     (company-flx-mode +1)))
 
-;; unknown...(???)
-(global-hl-todo-mode)
-(setq sh-basic-offset 2)
 
 
-;; markdown
-(progn
-  (autoload 'markdown-mode "markdown-mode"
-    "Major mode for editing Markdown files" t)
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-  (autoload 'gfm-mode "markdown-mode"
-    "Major mode for editing GitHub Flavored Markdown files" t)
-  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
-
-
-;; javascript
-(setq js-indent-level 2)
 
 ;; paredit
-(autoload 'enable-paredit-mode "paredit" nil t)
-(add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           'enable-paredit-mode)
+(progn
+  (autoload 'enable-paredit-mode "paredit" nil t)
+  (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook             'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook           'enable-paredit-mode))
 
 
-;; man page color
-(require 'man)
-(set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
-(set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t)
 
 
 ;; sane comment functionality
+;; (currently depends on paredit)
 (defun sd/comment-dwim ()
   (interactive)
   (if (or (region-active-p)
@@ -351,6 +332,45 @@
 (add-hook 'paredit-mode-hook
           (lambda ()
             (define-key paredit-mode-map (kbd "M-;") 'sd/comment-dwim)))
+
+
+
+
+;; man page color
+(progn
+  (require 'man)
+  (set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
+  (set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t))
+
+
+
+
+;; markdown
+(progn
+  (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+  (autoload 'gfm-mode "markdown-mode" "Major mode for editing GitHub Flavored Markdown files" t)
+  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
+
+
+
+
+;; misc
+(global-hl-todo-mode)
+
+
+
+
+;; shell scripts
+(setq sh-basic-offset 2)
+
+
+
+
+;; javascript
+(setq js-indent-level 2)
 
 
 
@@ -399,6 +419,9 @@
   ;; (add-hook 'eshell-before-prompt-hook (lambda () (setq xterm-color-preserve-properties t)))
   )
 
+
+
+
 ;; shortcuts for opening other apps
 (progn
   (defun sd/open-gitx-here ()
@@ -410,6 +433,9 @@
     (interactive)
     (shell-command "open -aterminal ."))
   (global-set-key (kbd "s-T")   'sd/open-terminal-here))
+
+
+
 
 ;; start off in reasonable directory
 (dired (concat (getenv "HOME") "/projects"))
