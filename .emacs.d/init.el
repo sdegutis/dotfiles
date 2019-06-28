@@ -5,46 +5,49 @@
   (package-initialize)
   (package-refresh-contents)
 
-  (defun sd/ensure-package (pkg)
-    (unless (package-installed-p pkg)
-      (package-install pkg)))
+  (defun sd/ensure-packages (&rest pkgs)
+    (dolist (pkg pkgs)
+      (unless (package-installed-p pkg)
+        (package-install pkg))))
 
-  ;; themes
-  (sd/ensure-package 'spacemacs-theme)
-  (sd/ensure-package 'zenburn-theme)
-  (sd/ensure-package 'color-theme-sanityinc-tomorrow)
-  (sd/ensure-package 'apropospriate-theme)
+  (sd/ensure-packages
 
-  ;; editing helpers
-  (sd/ensure-package 'undo-tree)
-  (sd/ensure-package 'multiple-cursors)
-  (sd/ensure-package 'rainbow-delimiters)
-  (sd/ensure-package 'paredit)
-  (sd/ensure-package 'hl-todo)
+   ;; themes
+   'spacemacs-theme
+   'zenburn-theme
+   'color-theme-sanityinc-tomorrow
+   'apropospriate-theme
 
-  ;; buffer management
-  (sd/ensure-package 'buffer-move)
-  (sd/ensure-package 'windsize)
-  (sd/ensure-package 'dimmer)
+   ;; editing helpers
+   'undo-tree
+   'multiple-cursors
+   'rainbow-delimiters
+   'paredit
+   'hl-todo
 
-  ;; markdown
-  (sd/ensure-package 'markdown-mode)
-  (sd/ensure-package 'polymode)
-  (sd/ensure-package 'poly-markdown)
+   ;; buffer management
+   'buffer-move
+   'windsize
+   'dimmer
 
-  ;; git
-  (sd/ensure-package 'magit)
+   ;; markdown
+   'markdown-mode
+   'polymode
+   'poly-markdown
 
-  ;; eshell
-  (sd/ensure-package 'xterm-color)
+   ;; git
+   'magit
 
-  ;; fuzzy-completion
-  (sd/ensure-package 'counsel)
-  (sd/ensure-package 'flx)
-  (sd/ensure-package 'smex)
-  (sd/ensure-package 'ivy)
-  (sd/ensure-package 'company)
-  (sd/ensure-package 'company-flx))
+   ;; eshell
+   'xterm-color
+
+   ;; fuzzy-completion
+   'counsel
+   'flx
+   'smex
+   'ivy
+   'company
+   'company-flx))
 
 
 
