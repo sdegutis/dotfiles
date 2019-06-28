@@ -17,7 +17,9 @@
         paredit-forward-delete
         paredit-forward-down
         paredit-forward-kill-word
+        paredit-forward-slurp-sexp
         paredit-forward-up
+        paredit-open-round
         paredit-raise-sexp
         paredit-splice-sexp
         sd/join-line
