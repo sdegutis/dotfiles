@@ -279,6 +279,7 @@
 ;; fuzzy-matching everywhere
 (progn
   (require 'ivy)
+  (require 'counsel)
 
   ;; show current position in list too
   (setq ivy-count-format "%d/%d ")
