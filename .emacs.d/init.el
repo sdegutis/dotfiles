@@ -1,3 +1,84 @@
+;; better defaults
+(progn
+
+  ;; startup stuff
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (setq initial-scratch-message "")
+  (setq inhibit-startup-screen t)
+  (setq inhibit-splash-screen t)
+  (setq inhibit-startup-echo-area-message (user-real-login-name))
+
+  ;; core GUI stuff
+  (setq enable-recursive-minibuffers t)
+  (setq ring-bell-function 'ignore)
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (set-face-font 'default "Menlo-14.0")
+
+  ;; cursor
+  (blink-cursor-mode 1)
+  (setq-default cursor-type 'box)
+
+  ;; dark mode stuff?
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+
+  ;; basic editing features
+  (delete-selection-mode 1)
+  (setq-default indent-tabs-mode nil)
+  (define-key prog-mode-map (kbd "RET") 'newline-and-indent)
+  (show-paren-mode 1)
+  (setq-default truncate-lines t)
+  (global-hl-line-mode 1)
+
+  ;; scrolling
+  (pixel-scroll-mode 0) ;; not there yet
+  (setq scroll-conservatively 101)
+  (setq auto-window-vscroll nil)
+  (setq scroll-step 1)
+
+  ;; join-line
+  (defun sd/join-line () (interactive) (join-line 1))
+  (global-set-key (kbd "M-k") #'sd/join-line)
+
+  ;; dont wrap lines when editing plain text
+  (add-hook 'text-mode-hook 'toggle-word-wrap)
+  (add-hook 'text-mode-hook 'toggle-truncate-lines)
+
+  ;; whitespace in files
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (setq require-final-newline t)
+
+  ;; prefer to split windows side by side
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 125)
+
+  ;; "customize"
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+  ;; disable backup, auto-save, and lock files
+  (setq-default backup-inhibited t)
+  (setq-default auto-save-default nil)
+  (setq create-lockfiles nil)
+
+  ;; fix $PATH (here for dired *and* eshell)
+  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+
+  ;; utf-8
+  (prefer-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+
+  ;; ;; not sure what this does... (TODO)
+  ;; (set-display-table-slot standard-display-table 0 ?~)
+
+  ;; disable useless shortcuts
+  (global-unset-key (kbd "C-z")) ;; stop minimizing
+  (global-unset-key (kbd "s-p")) ;; stop asking to print
+  )
+
+
 ;; bare-bones package management
 (progn
   (require 'package)
@@ -87,81 +168,7 @@
 
 
 
-;; fundamental fixes to emacs's unreasonable defaults
-(progn
-  ;; "customize"
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  ;; (load custom-file)
 
-  ;; startup stuff
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (setq initial-scratch-message "")
-  (setq inhibit-startup-screen t)
-  (setq inhibit-splash-screen t)
-  (setq inhibit-startup-echo-area-message (user-real-login-name))
-
-  ;; better defaults
-  (setq enable-recursive-minibuffers t)
-  (setq default-frame-alist '((vertical-scroll-bars)))
-  (set-display-table-slot standard-display-table 0 ?~)
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
-  (setq require-final-newline t)
-  (setq-default indent-tabs-mode nil)
-  (setq-default truncate-lines t)
-  (global-hl-line-mode -1)
-  (delete-selection-mode 1)
-  (setq-default cursor-type 'box)
-  (fset 'yes-or-no-p 'y-or-n-p)
-  (blink-cursor-mode 1)
-  (prefer-coding-system 'utf-8)
-  (set-terminal-coding-system 'utf-8)
-  (set-keyboard-coding-system 'utf-8)
-  (setq ring-bell-function 'ignore)
-  (setq blink-matching-paren t)
-  (show-paren-mode 1)
-  (pixel-scroll-mode 0) ;; somehow they managed to make a pixel scroll
-                        ;; that's actually worse than not having it
-
-  (setq scroll-conservatively 101)
-  (setq auto-window-vscroll nil)
-  (setq scroll-step 1)
-
-  ;; useless shortcuts
-  (global-unset-key (kbd "C-z")) ;; stop minimizing
-  (global-unset-key (kbd "s-p")) ;; stop asking to print
-
-  ;; visual tweaks
-  (add-to-list 'default-frame-alist '(alpha 100 100))
-  (set-face-font 'default "Menlo-14.0")
-
-  ;; dark mode stuff?
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
-
-  ;; disable backup, auto-save, and lock files
-  (setq-default backup-inhibited t)
-  (setq-default auto-save-default nil)
-  (setq create-lockfiles nil)
-
-  ;; prefer to split windows side by side
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 125)
-
-  ;; dont wrap lines when editing plain text
-  (add-hook 'text-mode-hook 'toggle-word-wrap)
-  (add-hook 'text-mode-hook 'toggle-truncate-lines)
-
-  ;; join-line
-  (defun sd/join-line () (interactive) (join-line 1))
-  (global-set-key (kbd "M-k") #'sd/join-line)
-
-  ;; fix $PATH (here for dired *and* eshell)
-  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
-
-  ;; editing
-  (define-key prog-mode-map (kbd "RET") 'newline-and-indent))
 
 
 ;; unknown...(???)
