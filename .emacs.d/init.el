@@ -5,7 +5,7 @@
   (package-initialize)
   (package-refresh-contents)
 
-  (defun sd/ensure-packages (&rest pkgs)
+  (defmacro sd/ensure-packages (&rest pkgs)
     (dolist (pkg pkgs)
       (unless (package-installed-p pkg)
         (package-install pkg))))
@@ -13,41 +13,41 @@
   (sd/ensure-packages
 
    ;; themes
-   'spacemacs-theme
-   'zenburn-theme
-   'color-theme-sanityinc-tomorrow
-   'apropospriate-theme
+   spacemacs-theme
+   zenburn-theme
+   color-theme-sanityinc-tomorrow
+   apropospriate-theme
 
    ;; editing helpers
-   'undo-tree
-   'multiple-cursors
-   'rainbow-delimiters
-   'paredit
-   'hl-todo
+   undo-tree
+   multiple-cursors
+   rainbow-delimiters
+   paredit
+   hl-todo
 
    ;; buffer management
-   'buffer-move
-   'windsize
-   'dimmer
+   buffer-move
+   windsize
+   dimmer
 
    ;; markdown
-   'markdown-mode
-   'polymode
-   'poly-markdown
+   markdown-mode
+   polymode
+   poly-markdown
 
    ;; git
-   'magit
+   magit
 
    ;; eshell
-   'xterm-color
+   xterm-color
 
    ;; fuzzy-completion
-   'counsel
-   'flx
-   'smex
-   'ivy
-   'company
-   'company-flx))
+   counsel
+   flx
+   smex
+   ivy
+   company
+   company-flx))
 
 
 
