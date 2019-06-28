@@ -79,6 +79,7 @@
   )
 
 
+
 ;; bare-bones package management
 (progn
   (require 'package)
@@ -132,14 +133,13 @@
 
 
 
-;; set theme
+;; theme stuff
 (progn
   (defun sd/use-theme (name)
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme name t t)
     (enable-theme name))
 
-  ;; (sd/use-theme 'spacemacs-light)
   ;; (sd/use-theme 'spacemacs-dark)
   (sd/use-theme 'apropospriate-dark)
   ;; (sd/use-theme 'solarized-dark)
@@ -147,24 +147,17 @@
   ;; (sd/use-theme 'zenburn)
   ;; (sd/use-theme 'sanityinc-tomorrow-eighties)
   ;; (sd/use-theme 'sanityinc-tomorrow-night)
-  ;; (sd/use-theme 'ample-flat)
-  ;; (sd/use-theme 'ample)
-  ;; (sd/use-theme 'moe-dark)
-  ;; (sd/use-theme 'material)
-  ;; (sd/use-theme 'material-light)
   ;; (sd/use-theme 'monokai)
   ;; (sd/use-theme 'naquadah)
-  )
 
-(defun sd/try-theme ()
-  (interactive)
-  (sd/use-theme
-   (intern
-    (completing-read
-     "Theme> "
-     (custom-available-themes)))))
-
-(global-set-key (kbd "C-x t") #'sd/try-theme)
+  (defun sd/try-theme ()
+    (interactive)
+    (sd/use-theme
+     (intern
+      (completing-read
+       "Theme> "
+       (custom-available-themes)))))
+  (global-set-key (kbd "C-x t") #'sd/try-theme))
 
 
 
