@@ -531,8 +531,8 @@ in the current window."
       ("l" "Find library" counsel-find-library)
       ("f" "Describe function" counsel-describe-function)
       ("v" "Describe variable" counsel-describe-variable)]
-     ["Misc"
-      ("t" "Open Terminal.app here" sd/open-terminal-here)
+     ["Shells"
+      ("s" "Open Terminal.app (shell) here" sd/open-terminal-here)
       ("e" "Open eshell at project root" sd/open-new-eshell-at-project-root)]])
   (global-set-key (kbd "s-J") 'sd/core-commands))
 
