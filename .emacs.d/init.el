@@ -18,6 +18,10 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   (set-face-font 'default "Menlo-14.0")
 
+  ;; line numbers when programming
+  (setq linum-format "%4d ")
+  (add-hook 'prog-mode-hook (lambda () (linum-mode 1)))
+
   ;; cursor
   (blink-cursor-mode 1)
   (setq-default cursor-type 'box)
