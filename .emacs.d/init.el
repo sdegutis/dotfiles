@@ -380,10 +380,7 @@
 (progn
   (require 'eshell)
 
-  ;; (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
-
   (setq eshell-banner-message "ready.\n")
-  ;; (setq eshell-output-filter-functions (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
   (setq eshell-prompt-function 'sd/eshell-prompt)
 
   (defun sd/open-new-eshell-at-project-root ()
@@ -414,6 +411,15 @@
      (abbreviate-file-name
       (eshell/pwd))
      (if (= (user-uid) 0) " # " " $ ")))
+
+  ;; ostensibly better color support
+  (add-hook 'eshell-before-prompt-hook
+            (lambda ()
+              (setq xterm-color-preserve-properties t)))
+  (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
+  (setq eshell-output-filter-functions
+        (remove 'eshell-handle-ansi-color
+                eshell-output-filter-functions))
 
   ;; (add-hook 'eshell-mode-hook 'toggle-truncate-lines)
   (add-hook 'eshell-mode-hook #'sd/setup-eshell)
