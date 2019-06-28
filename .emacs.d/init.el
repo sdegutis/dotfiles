@@ -320,6 +320,9 @@
   ;; easy way to clean up old buffers
   (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
 
+  ;; this always quits out of ivy-switch-buffer after ivy-switch-buffer-kill
+  (add-to-list 'ivy-ignore-buffers "\*Backtrace\*")
+
   ;; make ivy more like ido for files/dirs
   (setq ivy-extra-directories nil) ;; no . or ..
   (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
