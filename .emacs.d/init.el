@@ -1,52 +1,52 @@
-(setq sd/packages
-      '(
-
-        ;; themes
-        spacemacs-theme
-        zenburn-theme
-        color-theme-sanityinc-tomorrow
-        apropospriate-theme
-
-        ;; editing helpers
-        undo-tree
-        multiple-cursors
-        rainbow-delimiters
-        paredit
-        hl-todo
-
-        ;; buffer management
-        buffer-move
-        windsize
-        dimmer
-
-        ;; markdown
-        markdown-mode
-        polymode
-        poly-markdown
-
-        ;; git
-        magit
-
-        ;; eshell
-        xterm-color
-
-        ;; fuzzy-completion
-        counsel
-        flx
-        smex
-        ivy
-        company
-        company-flx
-
-        ))
-
-;; setup initial packages
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
-(unless (package-installed-p (car sd/packages))
+;; bare-bones package management
+(progn
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+  (package-initialize)
   (package-refresh-contents)
-  (mapc #'package-install sd/packages))
+
+  (defun sd/ensure-package (pkg)
+    (unless (package-installed-p pkg)
+      (package-install pkg)))
+
+  ;; themes
+  (sd/ensure-package 'spacemacs-theme)
+  (sd/ensure-package 'zenburn-theme)
+  (sd/ensure-package 'color-theme-sanityinc-tomorrow)
+  (sd/ensure-package 'apropospriate-theme)
+
+  ;; editing helpers
+  (sd/ensure-package 'undo-tree)
+  (sd/ensure-package 'multiple-cursors)
+  (sd/ensure-package 'rainbow-delimiters)
+  (sd/ensure-package 'paredit)
+  (sd/ensure-package 'hl-todo)
+
+  ;; buffer management
+  (sd/ensure-package 'buffer-move)
+  (sd/ensure-package 'windsize)
+  (sd/ensure-package 'dimmer)
+
+  ;; markdown
+  (sd/ensure-package 'markdown-mode)
+  (sd/ensure-package 'polymode)
+  (sd/ensure-package 'poly-markdown)
+
+  ;; git
+  (sd/ensure-package 'magit)
+
+  ;; eshell
+  (sd/ensure-package 'xterm-color)
+
+  ;; fuzzy-completion
+  (sd/ensure-package 'counsel)
+  (sd/ensure-package 'flx)
+  (sd/ensure-package 'smex)
+  (sd/ensure-package 'ivy)
+  (sd/ensure-package 'company)
+  (sd/ensure-package 'company-flx))
+
+
 
 ;; set theme
 (progn
