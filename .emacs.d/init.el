@@ -83,6 +83,7 @@
   ;; disable useless shortcuts
   (global-unset-key (kbd "C-z")) ;; stop minimizing
   (global-unset-key (kbd "s-p")) ;; stop asking to print
+  (global-unset-key (kbd "s-k")) ;; don't destroy current buffer
   )
 
 
