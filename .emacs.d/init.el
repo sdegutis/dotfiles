@@ -447,6 +447,24 @@ in the current window."
     (add-hook 'before-save-hook 'tide-format-before-save)
     (setq company-tooltip-align-annotations t))
 
+  (define-transient-command sd/tide-commands ()
+    "TypeScript Commands"
+    [["Refactoring"
+      ("r" "Refactor" tide-refactor)
+      ("s" "Rename symbol" tide-rename-symbol)
+      ("m" "Rename file" tide-rename-file)
+      ("o" "Organize imports" tide-organize-imports)]
+     ["Navigating"
+      ("f" "References" tide-references)
+      ("i" "Jump to implementation" tide-jump-to-implementation)
+      ("d" "Jump to definition" tide-jump-to-definition)
+      ("l" "List servers" tide-list-servers)]
+     ["Errors"
+      ("x" "Fix error at point" tide-fix)
+      ("n" "Add tslint-disable-next-line" tide-add-tslint-disable-next-line)
+      ("e" "List project errors" tide-project-errors)]])
+  (define-key tide-mode-map (kbd "s-R") 'sd/tide-commands)
+
   (require 'web-mode)
   (add-to-list 'auto-mode-alist '("\\.\\(t\\|j\\)sx?\\'" . web-mode))
 
