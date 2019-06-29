@@ -551,6 +551,17 @@ in the current window."
 
 
 
+;; lua
+(defun sd/run-love2d ()
+  (interactive)
+  (shell-command "love ."))
+(add-hook 'lua-mode-hook
+          (lambda ()
+            (define-key lua-mode-map (kbd "s-r") 'sd/run-love2d)))
+
+
+
+
 ;; experimental "command center"
 (progn
   (require 'transient)
