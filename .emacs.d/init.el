@@ -19,6 +19,7 @@
   (set-face-font 'default "Menlo-14.0")
 
   ;; line numbers when programming
+  (setq display-line-numbers-width 4)
   (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode +1)))
 
   ;; cursor
