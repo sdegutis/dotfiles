@@ -382,6 +382,20 @@ in the current window."
 
 
 
+;; basic duplicate line functionality
+(defun sd/duplicate-line ()
+  (interactive)
+  (when (not (region-active-p))
+    (beginning-of-line)
+    (set-mark (line-beginning-position 2)))
+  (insert
+   (buffer-substring (caar (region-bounds))
+                     (cdar (region-bounds)))))
+(global-set-key (kbd "s-d") 'sd/duplicate-line)
+
+
+
+
 ;; man page color
 (progn
   (require 'man)
