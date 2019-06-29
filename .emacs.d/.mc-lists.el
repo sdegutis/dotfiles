@@ -25,8 +25,10 @@
         paredit-open-round
         paredit-raise-sexp
         paredit-splice-sexp
+        paredit-wrap-round
         sd/join-line
         sgml-slash
+        transpose-sexps
         ))
 
 (setq mc/cmds-to-run-once
