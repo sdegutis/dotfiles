@@ -555,6 +555,7 @@ in the current window."
 (defun sd/run-love2d ()
   (interactive)
   (shell-command "love ."))
+(setq lua-indent-level 2)
 (add-hook 'lua-mode-hook
           (lambda ()
             (define-key lua-mode-map (kbd "s-r") 'sd/run-love2d)))
