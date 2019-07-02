@@ -178,11 +178,9 @@
 
    ;; fuzzy-completion
    counsel
-   flx
    smex
    ivy
-   company
-   company-flx)
+   )
 
   ;; definitely should be loaded by now
   (sd/maybe-load-theme sd/theme))
@@ -302,7 +300,7 @@
   ;; stop backspace closing minibuffer
   (setq ivy-on-del-error-function nil)
 
-  ;; FIXME: not sure how to get this working...
+  ;; completion using C-M-i, *way* better than company-mode
   (setq completion-in-region-function 'ivy-completion-in-region)
 
   ;; ivy/swiper fuzzy matching
@@ -344,12 +342,7 @@ in the current window."
   (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
 
   ;; make ivy work /everywhere/
-  (ivy-mode 1)
-
-  ;; auto-completion with fuzzy matching
-  (add-hook 'after-init-hook 'global-company-mode)
-  (with-eval-after-load 'company
-    (company-flx-mode +1)))
+  (ivy-mode 1))
 
 
 
@@ -461,10 +454,9 @@ in the current window."
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
-    (company-mode +1)
-    (add-hook 'before-save-hook 'tide-format-before-save)
-    (setq company-tooltip-align-annotations t))
+    (add-hook 'before-save-hook 'tide-format-before-save))
 
+  (require 'tide)
   (define-transient-command sd/tide-commands ()
     "TypeScript Commands"
     [["Refactoring"
