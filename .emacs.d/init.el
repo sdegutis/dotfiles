@@ -584,7 +584,7 @@ in the current window."
      ["Shells"
       ("s" "Open Terminal.app (shell) here" sd/open-terminal-here)
       ("e" "Open eshell at project root" sd/open-new-eshell-at-project-root)]])
-  (global-set-key (kbd "s-J") 'sd/core-commands))
+  (global-set-key (kbd "s-P") 'sd/core-commands))
 
 
 
