@@ -302,6 +302,9 @@
   ;; stop backspace closing minibuffer
   (setq ivy-on-del-error-function nil)
 
+  ;; FIXME: not sure how to get this working...
+  (setq completion-in-region-function 'ivy-completion-in-region)
+
   ;; ivy/swiper fuzzy matching
   (setq ivy-re-builders-alist
         '((swiper           . ivy--regex-plus)
