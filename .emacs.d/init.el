@@ -549,11 +549,32 @@ in the current window."
 ;; lua
 (defun sd/run-love2d ()
   (interactive)
-  (shell-command "love ."))
+  (make-comint-in-buffer "love2d"
+                         "*love2d*"
+                         "love"
+                         nil
+                         "."))
+
+(defun sd/send-to-love2d ()
+  (interactive)
+  (comint-send-string
+   (get-process "love2d")
+   (concat
+    (buffer-substring
+     (region-beginning)
+     (region-end))
+    (make-string 1 ?\0)))
+  (message "ok sent"))
+
+(defun sd/lua-comint-input-send (proc string)
+  (comint-simple-send proc (concat string (make-string 1 ?\0))))
+
 (setq lua-indent-level 2)
 (add-hook 'lua-mode-hook
           (lambda ()
-            (define-key lua-mode-map (kbd "s-r") 'sd/run-love2d)))
+            (define-key lua-mode-map (kbd "s-r") 'sd/run-love2d)
+            (define-key lua-mode-map (kbd "s-e") 'sd/send-to-love2d)
+            (setq comint-input-sender 'sd/lua-comint-input-send)))
 
 
 
