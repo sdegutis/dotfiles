@@ -158,6 +158,7 @@
    rainbow-delimiters
    paredit
    hl-todo
+   default-text-scale
 
    ;; buffer management
    buffer-move
@@ -283,6 +284,12 @@
 (setq-default dired-auto-revert-buffer t)
 (setq-default dired-use-ls-dired nil)
 (setq dired-listing-switches "-alh")
+
+
+
+
+;; global text adjustement
+(default-text-scale-mode +1)
 
 
 
