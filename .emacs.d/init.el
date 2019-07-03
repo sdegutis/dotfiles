@@ -589,7 +589,8 @@ in the current window."
       ("t" "Use theme" counsel-load-theme)
       ("p" "Install package" counsel-package)
       ("k" "Key bindings" counsel-descbinds)
-      ("b" "Bookmarks" counsel-bookmark)]
+      ("b" "Bookmarks" counsel-bookmark)
+      ("i" "Edit emacs/init.el" sd/edit-emacs-init)]
      ["Git"
       ("f" "Find file in git repo" counsel-git)
       ("g" "Find string with git-grep" counsel-git-grep)
