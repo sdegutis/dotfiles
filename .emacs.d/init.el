@@ -591,13 +591,9 @@ in the current window."
       ("k" "Key bindings" counsel-descbinds)
       ("b" "Bookmarks" counsel-bookmark)]
      ["Git"
-      ("g" "Find file in git repo" counsel-git)
-      ("r" "Find string with git-grep" counsel-git-grep)
+      ("f" "Find file in git repo" counsel-git)
+      ("g" "Find string with git-grep" counsel-git-grep)
       ("x" "Open GitX here" sd/open-gitx-here)]
-     ["Emacs Lisp"
-      ("l" "Find library" counsel-find-library)
-      ("f" "Describe function" counsel-describe-function)
-      ("v" "Describe variable" counsel-describe-variable)]
      ["Shells"
       ("s" "Open Terminal.app (shell) here" sd/open-terminal-here)
       ("e" "Open eshell at project root" sd/open-new-eshell-at-project-root)]])
