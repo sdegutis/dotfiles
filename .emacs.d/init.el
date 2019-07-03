@@ -588,13 +588,13 @@ in the current window."
     [["Core"
       ("t" "Use theme" counsel-load-theme)
       ("p" "Install package" counsel-package)
-      ("b" "Show bindings" counsel-descbinds)]
+      ("k" "Key bindings" counsel-descbinds)
+      ("b" "Bookmarks" counsel-bookmark)]
      ["Git"
       ("g" "Find file in git repo" counsel-git)
       ("r" "Find string with git-grep" counsel-git-grep)
       ("x" "Open GitX here" sd/open-gitx-here)]
      ["Emacs Lisp"
-      ("i" "Edit init.el" sd/edit-emacs-init)
       ("l" "Find library" counsel-find-library)
       ("f" "Describe function" counsel-describe-function)
       ("v" "Describe variable" counsel-describe-variable)]
