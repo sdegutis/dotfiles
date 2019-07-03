@@ -317,20 +317,6 @@
   (global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
-  (defun counsel-switch-buffer ()
-    "Switch to another buffer.
-Display a preview of the selected ivy completion candidate buffer
-in the current window."
-    (interactive)
-    (ivy-read "Switch to buffer: " 'internal-complete-buffer
-              :keymap ivy-switch-buffer-map
-              :preselect (buffer-name (other-buffer (current-buffer)))
-              :action #'ivy--switch-buffer-action
-              :matcher #'ivy--switch-buffer-matcher
-              :caller 'counsel-switch-buffer
-              :unwind #'counsel--switch-buffer-unwind
-              :update-fn 'counsel--switch-buffer-update-fn))
-
   ;; easy way to clean up old buffers
   (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-switch-buffer-kill)
 
