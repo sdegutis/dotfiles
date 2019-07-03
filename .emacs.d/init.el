@@ -542,7 +542,9 @@
                          "*love2d*"
                          "love"
                          nil
-                         "."))
+                         ".")
+  (switch-to-buffer-other-window "*love2d*")
+  (setq-local comint-input-sender 'sd/lua-comint-input-send))
 
 (defun sd/send-to-love2d ()
   (interactive)
@@ -552,7 +554,8 @@
     (buffer-substring
      (region-beginning)
      (region-end))
-    (make-string 1 ?\0)))
+    (make-string 1 ?\0)
+    "\n"))
   (message "ok sent"))
 
 (defun sd/lua-comint-input-send (proc string)
@@ -562,8 +565,7 @@
 (add-hook 'lua-mode-hook
           (lambda ()
             (define-key lua-mode-map (kbd "s-r") 'sd/run-love2d)
-            (define-key lua-mode-map (kbd "s-e") 'sd/send-to-love2d)
-            (setq comint-input-sender 'sd/lua-comint-input-send)))
+            (define-key lua-mode-map (kbd "s-e") 'sd/send-to-love2d)))
 
 
 
