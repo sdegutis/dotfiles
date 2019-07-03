@@ -253,6 +253,7 @@
 (global-set-key (kbd "C-<return>") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-s->") 'mc/mark-next-like-this-symbol)
+(define-key mc/keymap (kbd "<return>") nil)
 
 
 
