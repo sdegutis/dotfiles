@@ -3,7 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-sexp
         dabbrev-expand
+        down-list
         electric-newline-and-maybe-indent
         forward-sexp
         indent-for-tab-command
