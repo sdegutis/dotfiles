@@ -1,7 +1,7 @@
 ;; better defaults
 (progn
 
-  (defvar sd/theme 'apropospriate-dark)
+  (defvar sd/theme 'atom-one-dark)
 
   ;; startup stuff
   (menu-bar-mode -1)
@@ -94,8 +94,8 @@
   ;; favorite themes listed here in rough priority of preference
   ;; try them out with C-x C-e while cursor's at end of line
 
-  ;; (counsel-load-theme-action "apropospriate-dark")
   ;; (counsel-load-theme-action "atom-one-dark")
+  ;; (counsel-load-theme-action "apropospriate-dark")
   ;; (counsel-load-theme-action "solarized-dark")
   ;; (counsel-load-theme-action "zenburn")
   ;; (counsel-load-theme-action "spacemacs-dark")
