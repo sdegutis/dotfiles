@@ -302,6 +302,9 @@
   ;; show current position in list too
   (setq ivy-count-format "%d/%d ")
 
+  ;; magit + ivy
+  (setq magit-completing-read-function 'ivy-completing-read)
+
   ;; don't add ^ to beginning of *any* searches
   (setq ivy-initial-inputs-alist nil)
 
