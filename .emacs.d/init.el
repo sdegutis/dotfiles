@@ -168,10 +168,6 @@
    windsize
    dimmer
 
-   ;; javascript
-   js-comint
-   ;; ts-comint
-
    ;; markdown
    markdown-mode
    polymode
@@ -425,68 +421,6 @@
 (setq sh-basic-offset 2)
 
 
-
-
-;; javascript
-(progn
-  (setq js-indent-level 2)
-  (setq typescript-indent-level 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-
-  (add-hook 'js-mode-hook
-            (lambda ()
-              (local-set-key (kbd "C-c C-e") 'js-comint-start-or-switch-to-repl)
-              (local-set-key (kbd "C-x C-e") 'js-comint-send-last-sexp)
-              (local-set-key (kbd "C-x C-r") 'js-comint-send-region)
-              (local-set-key (kbd "C-c C-b") 'js-comint-send-buffer)))
-
-  ;; (add-hook 'web-mode-hook
-  ;;           (lambda ()
-  ;;             (when (string-match "\\(t\\|j\\)sx?" (file-name-extension buffer-file-name))
-  ;;               (local-set-key (kbd "C-c C-e") 'ts-comint-start-or-switch-to-repl)
-  ;;               (local-set-key (kbd "C-x C-e") 'ts-comint-send-last-sexp)
-  ;;               (local-set-key (kbd "C-x C-r") 'ts-comint-send-region)
-  ;;               (local-set-key (kbd "C-c C-b") 'ts-comint-send-buffer))))
-
-  (defun sd/setup-tide-mode ()
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1)
-    (add-hook 'before-save-hook 'tide-format-before-save))
-
-  (require 'tide)
-  (define-transient-command sd/tide-commands ()
-    "TypeScript Commands"
-    [["Refactoring"
-      ("r" "Refactor" tide-refactor)
-      ("s" "Rename symbol" tide-rename-symbol)
-      ("m" "Rename file" tide-rename-file)
-      ("o" "Organize imports" tide-organize-imports)]
-     ["Navigating"
-      ("f" "References" tide-references)
-      ("i" "Jump to implementation" tide-jump-to-implementation)
-      ("d" "Jump to definition" tide-jump-to-definition)
-      ("l" "List servers" tide-list-servers)]
-     ["Errors"
-      ("x" "Fix error at point" tide-fix)
-      ("n" "Add tslint-disable-next-line" tide-add-tslint-disable-next-line)
-      ("e" "List project errors" tide-project-errors)]])
-  (define-key tide-mode-map (kbd "s-R") 'sd/tide-commands)
-
-  (require 'web-mode)
-  (add-to-list 'auto-mode-alist '("\\.\\(t\\|j\\)sx?\\'" . web-mode))
-
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when (string-match "\\(t\\|j\\)sx?" (file-name-extension buffer-file-name))
-                (sd/setup-tide-mode))))
-
-  (require 'flycheck)
-  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 
 
