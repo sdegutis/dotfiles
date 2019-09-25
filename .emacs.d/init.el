@@ -168,11 +168,6 @@
    windsize
    dimmer
 
-   ;; markdown
-   markdown-mode
-   polymode
-   poly-markdown
-
    ;; git
    magit
 
@@ -395,18 +390,6 @@
   (require 'man)
   (set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
   (set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t))
-
-
-
-
-;; markdown
-(progn
-  (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-  (autoload 'gfm-mode "markdown-mode" "Major mode for editing GitHub Flavored Markdown files" t)
-  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
 
 
 
