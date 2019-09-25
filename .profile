@@ -25,6 +25,3 @@ export PATH="/usr/local/bin:$PATH"
 
 # bash completion
 source /usr/local/etc/bash_completion
-
-# ruby
-eval "$(rbenv init -)"
