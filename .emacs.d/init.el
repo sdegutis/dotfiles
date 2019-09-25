@@ -18,6 +18,9 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   (set-face-font 'default "Menlo-14.0")
 
+  ;; one space is good enough to end a sentence
+  (setq sentence-end-double-space nil)
+
   ;; line numbers when programming
   (setq-default display-line-numbers-width 4)
   (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode +1)))
