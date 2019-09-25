@@ -548,38 +548,6 @@
 
 
 
-;; lua
-(defun sd/run-love2d ()
-  (interactive)
-  (make-comint-in-buffer "love2d"
-                         "*love2d*"
-                         "love"
-                         nil
-                         ".")
-  (switch-to-buffer-other-window "*love2d*")
-  (setq-local comint-input-sender 'sd/lua-comint-input-send))
-
-(defun sd/send-to-love2d ()
-  (interactive)
-  (comint-send-string
-   (get-process "love2d")
-   (concat
-    (buffer-substring
-     (region-beginning)
-     (region-end))
-    (make-string 1 ?\0)
-    "\n"))
-  (message "ok sent"))
-
-(defun sd/lua-comint-input-send (proc string)
-  (comint-simple-send proc (concat string (make-string 1 ?\0))))
-
-(setq lua-indent-level 2)
-(add-hook 'lua-mode-hook
-          (lambda ()
-            (define-key lua-mode-map (kbd "s-r") 'sd/run-love2d)
-            (define-key lua-mode-map (kbd "s-e") 'sd/send-to-love2d)))
-
 
 
 
