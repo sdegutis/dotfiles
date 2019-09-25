@@ -12,7 +12,7 @@ GREEN='\[\e[32m\]'    GRAY='\[\e[37m\]'
 export PS1="$RESET\n$BOLD$BLUE(\u) \$(sd_retval_cond \"$GREEN[woo]\" \"$RED[aww \$?]\") $YELLOW(\$(date +%H:%M:%S)) $PINK\w\n$RESET$BLUE\$$RESET "
 
 export CLICOLOR=1
-export EDITOR='emacs -Q -nw'
+export EDITOR='vim'
 
 alias ls="ls -lah"
 alias tree="tree -C"
