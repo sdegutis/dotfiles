@@ -351,40 +351,6 @@
 
 
 
-;; sane comment functionality
-;; (currently depends on paredit)
-(defun sd/comment-dwim ()
-  (interactive)
-  (if (or (region-active-p)
-          (string-blank-p
-           (buffer-substring (line-beginning-position)
-                             (line-end-position))))
-      (paredit-comment-dwim)
-    (save-excursion
-      (end-of-line)
-      (set-mark (line-beginning-position))
-      (paredit-comment-dwim))))
-(add-hook 'paredit-mode-hook
-          (lambda ()
-            (define-key paredit-mode-map (kbd "M-;") 'sd/comment-dwim)))
-
-
-
-
-;; basic duplicate line functionality
-(defun sd/duplicate-line ()
-  (interactive)
-  (when (not (region-active-p))
-    (beginning-of-line)
-    (set-mark (line-beginning-position 2)))
-  (insert
-   (buffer-substring (caar (region-bounds))
-                     (cdar (region-bounds)))))
-(global-set-key (kbd "s-d") 'sd/duplicate-line)
-
-
-
-
 ;; man page color
 (progn
   (require 'man)
