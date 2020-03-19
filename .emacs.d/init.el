@@ -394,7 +394,7 @@
       (eshell-emit-prompt)))
 
   (defun sd/setup-eshell ()
-    (setenv "TERM" "xterm-256color")
+    ;; (setenv "TERM" "xterm-256color")
     (setq-local truncate-lines nil)
     ;; (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
     (define-key eshell-mode-map (kbd "s-k")   'sd/clear-eshell-buffer)
