@@ -28,7 +28,7 @@ select-word-style bash
 export CLICOLOR=1
 export EDITOR='vim'
 
-alias ls="ls -lah"
+alias LS="ls -lah"
 alias tree="tree -C"
 
 export HISTSIZE=500000
