@@ -38,3 +38,6 @@ export PATH="/usr/local/bin:$PATH"
 
 # zsh completion
 export fpath=(/usr/local/share/zsh-completions $fpath)
+
+# ruby for github pages
+PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
