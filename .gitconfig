@@ -9,7 +9,6 @@
 	co = checkout
 	lg = log --oneline --graph --all --decorate
 	amen = commit -a --amen -CHEAD
-	x = !open -a gitx .
 
 [color]
 	ui = true

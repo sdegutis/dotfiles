@@ -14,14 +14,7 @@ export PS1="$RESET\n$BOLD$BLUE(\u) \$(sd_retval_cond \"$GREEN[woo]\" \"$RED[aww 
 export CLICOLOR=1
 export EDITOR='vim'
 
-alias ls="ls -lah"
-alias tree="tree -C"
+alias LS="ls -lah"
 
 export HISTFILESIZE=500000
 export HISTSIZE=500000
-
-# homebrew
-export PATH="/usr/local/bin:$PATH"
-
-# bash completion
-source /usr/local/etc/bash_completion
