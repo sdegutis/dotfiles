@@ -1,3 +1,5 @@
+source $HOME/.bashrc
+
 sd_retval_cond () {
     local ret_val=$?
     if [[ "$ret_val" = "0" ]]; then echo -e "$1"; else echo -e "$2"; fi
